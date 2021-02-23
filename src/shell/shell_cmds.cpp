@@ -11,6 +11,10 @@
 #include "quadshell.hpp"
 #include "trajectory.hpp"
 
+#define TRAJ_HEART       0
+#define TRAJ_EIGHT_CURVE 1
+#define TRAJ_SELECT TRAJ_EIGHT_CURVE
+
 using namespace std;
 
 bool trajectory_follow_halt = false;
@@ -150,6 +154,8 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 	shell_cli(&shell);
 
 	if(strcmp(shell.buf, "y") == 0 || strcmp(shell.buf, "Y") == 0) {
+
+#if (TRAJ_SELECT == TRAJ_HEART)
 		trajectory_t traj[5];
 		traj[0].start.pos[0] = 0;
 		traj[0].start.pos[1] = 0;
@@ -184,6 +190,66 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[3].flight_time = 2.0f;
 
 		int traj_list_size = 4; //TODO: fix hardcode
+#elif (TRAJ_SELECT == TRAJ_EIGHT_CURVE)
+		trajectory_t traj[7];
+		traj[0].start.pos[0] = 0;
+		traj[0].start.pos[1] = 0;
+		traj[0].start.pos[2] = 0.6f;
+		traj[0].end.pos[0] = 0.25;
+		traj[0].end.pos[1] = -0.4f;
+		traj[0].end.pos[2] = 0.6f;
+		traj[0].flight_time = 2.2f;
+
+		traj[1].start.pos[0] = 0.25f;
+		traj[1].start.pos[1] = -0.4f;
+		traj[1].start.pos[2] = 0.6f;
+		traj[1].end.pos[0] = 1.2f;
+		traj[1].end.pos[1] = 0.0f;
+		traj[1].end.pos[2] = 0.6f;
+		traj[1].flight_time = 2.2f;
+
+		traj[2].start.pos[0] = 1.2f;
+		traj[2].start.pos[1] = 0.0f;
+		traj[2].start.pos[2] = 0.6f;
+		traj[2].end.pos[0] = 0.25f;
+		traj[2].end.pos[1] = 0.5f;
+		traj[2].end.pos[2] = 0.6f;
+		traj[2].flight_time = 2.2f;
+
+		traj[3].start.pos[0] = 0.25f;
+		traj[3].start.pos[1] = 0.5f;
+		traj[3].start.pos[2] = 0.6f;
+		traj[3].end.pos[0] = -0.4f;
+		traj[3].end.pos[1] = -0.5f;
+		traj[3].end.pos[2] = 0.6f;
+		traj[3].flight_time = 2.2f;
+
+		traj[4].start.pos[0] = -0.4f;
+		traj[4].start.pos[1] = -0.5f;
+		traj[4].start.pos[2] = 0.6f;
+		traj[4].end.pos[0] = -1.2f;
+		traj[4].end.pos[1] = 0.0f;
+		traj[4].end.pos[2] = 0.6f;
+		traj[4].flight_time = 2.2f;
+
+		traj[5].start.pos[0] = -1.2f;
+		traj[5].start.pos[1] = 0.0f;
+		traj[5].start.pos[2] = 0.6f;
+		traj[5].end.pos[0] = -0.4f;
+		traj[5].end.pos[1] = 0.5f;
+		traj[5].end.pos[2] = 0.6f;
+		traj[5].flight_time = 2.2f;
+
+		traj[6].start.pos[0] = -0.4f;
+		traj[6].start.pos[1] = 0.5f;
+		traj[6].start.pos[2] = 0.6f;
+		traj[6].end.pos[0] = 0.0f;
+		traj[6].end.pos[1] = 0.0f;
+		traj[6].end.pos[2] = 0.6f;
+		traj[6].flight_time = 2.2f;
+
+		int traj_list_size = 7; //TODO: fix hardcode
+#endif
 
 		vector<double> x_coeff_full, y_coeff_full, z_coeff_full;
 		vector<double> yaw_coeff_full;
