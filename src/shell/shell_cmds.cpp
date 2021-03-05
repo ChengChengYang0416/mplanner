@@ -156,6 +156,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 	if(strcmp(shell.buf, "y") == 0 || strcmp(shell.buf, "Y") == 0) {
 
 #if (TRAJ_SELECT == TRAJ_HEART)
+		float duration = 2.0f;
 		trajectory_t traj[5];
 		traj[0].start.pos[0] = 0;
 		traj[0].start.pos[1] = 0;
@@ -163,7 +164,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[0].end.pos[0] = 0.6;
 		traj[0].end.pos[1] = -0.6f;
 		traj[0].end.pos[2] = 0.6f;
-		traj[0].flight_time = 2.0f;
+		traj[0].flight_time = duration;
 
 		traj[1].start.pos[0] = 0.6f;
 		traj[1].start.pos[1] = -0.6f;
@@ -171,7 +172,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[1].end.pos[0] = 0.0f;
 		traj[1].end.pos[1] = 0.6f;
 		traj[1].end.pos[2] = 0.6f;
-		traj[1].flight_time = 2.0f;
+		traj[1].flight_time = duration;
 
 		traj[2].start.pos[0] = 0.0f;
 		traj[2].start.pos[1] = 0.6f;
@@ -179,7 +180,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[2].end.pos[0] = -0.6f;
 		traj[2].end.pos[1] = -0.6f;
 		traj[2].end.pos[2] = 0.6f;
-		traj[2].flight_time = 2.0f;
+		traj[2].flight_time = duration;
 
 		traj[3].start.pos[0] = -0.6f;
 		traj[3].start.pos[1] = -0.6f;
@@ -187,10 +188,11 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[3].end.pos[0] = 0.0f;
 		traj[3].end.pos[1] = 0.0f;
 		traj[3].end.pos[2] = 0.6f;
-		traj[3].flight_time = 2.0f;
+		traj[3].flight_time = duration;
 
 		int traj_list_size = 4; //TODO: fix hardcode
 #elif (TRAJ_SELECT == TRAJ_EIGHT_CURVE)
+		float duration = 2.0f;
 		trajectory_t traj[7];
 		traj[0].start.pos[0] = 0;
 		traj[0].start.pos[1] = 0;
@@ -198,7 +200,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[0].end.pos[0] = 0.25;
 		traj[0].end.pos[1] = -0.4f;
 		traj[0].end.pos[2] = 0.6f;
-		traj[0].flight_time = 2.2f;
+		traj[0].flight_time = duration;
 
 		traj[1].start.pos[0] = 0.25f;
 		traj[1].start.pos[1] = -0.4f;
@@ -206,7 +208,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[1].end.pos[0] = 1.2f;
 		traj[1].end.pos[1] = 0.0f;
 		traj[1].end.pos[2] = 0.6f;
-		traj[1].flight_time = 2.2f;
+		traj[1].flight_time = duration;
 
 		traj[2].start.pos[0] = 1.2f;
 		traj[2].start.pos[1] = 0.0f;
@@ -214,7 +216,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[2].end.pos[0] = 0.25f;
 		traj[2].end.pos[1] = 0.5f;
 		traj[2].end.pos[2] = 0.6f;
-		traj[2].flight_time = 2.2f;
+		traj[2].flight_time = duration;
 
 		traj[3].start.pos[0] = 0.25f;
 		traj[3].start.pos[1] = 0.5f;
@@ -222,7 +224,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[3].end.pos[0] = -0.4f;
 		traj[3].end.pos[1] = -0.5f;
 		traj[3].end.pos[2] = 0.6f;
-		traj[3].flight_time = 2.2f;
+		traj[3].flight_time = duration;
 
 		traj[4].start.pos[0] = -0.4f;
 		traj[4].start.pos[1] = -0.5f;
@@ -230,7 +232,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[4].end.pos[0] = -1.2f;
 		traj[4].end.pos[1] = 0.0f;
 		traj[4].end.pos[2] = 0.6f;
-		traj[4].flight_time = 2.2f;
+		traj[4].flight_time = duration;
 
 		traj[5].start.pos[0] = -1.2f;
 		traj[5].start.pos[1] = 0.0f;
@@ -238,7 +240,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[5].end.pos[0] = -0.4f;
 		traj[5].end.pos[1] = 0.5f;
 		traj[5].end.pos[2] = 0.6f;
-		traj[5].flight_time = 2.2f;
+		traj[5].flight_time = duration;
 
 		traj[6].start.pos[0] = -0.4f;
 		traj[6].start.pos[1] = 0.5f;
@@ -246,7 +248,7 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[6].end.pos[0] = 0.0f;
 		traj[6].end.pos[1] = 0.0f;
 		traj[6].end.pos[2] = 0.6f;
-		traj[6].flight_time = 2.2f;
+		traj[6].flight_time = duration;
 
 		int traj_list_size = 7; //TODO: fix hardcode
 #endif
