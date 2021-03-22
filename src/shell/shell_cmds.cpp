@@ -11,9 +11,10 @@
 #include "quadshell.hpp"
 #include "trajectory.hpp"
 
-#define TRAJ_HEART       0
-#define TRAJ_EIGHT_CURVE 1
-#define TRAJ_SELECT TRAJ_EIGHT_CURVE
+#define TRAJ_HEART       	0
+#define TRAJ_EIGHT_CURVE 	1
+#define TRAJ_LINEAR_MOTION	2
+#define TRAJ_SELECT TRAJ_LINEAR_MOTION
 
 using namespace std;
 
@@ -251,6 +252,42 @@ void shell_cmd_traj_plan(char param_list[PARAM_LIST_SIZE_MAX][PARAM_LEN_MAX], in
 		traj[6].flight_time = duration;
 
 		int traj_list_size = 7; //TODO: fix hardcode
+#elif (TRAJ_SELECT == TRAJ_LINEAR_MOTION)
+		float duration = 2.0f;
+		trajectory_t traj[4];
+		traj[0].start.pos[0] = 0.8;
+		traj[0].start.pos[1] = 0;
+		traj[0].start.pos[2] = 0.6f;
+		traj[0].end.pos[0] = 1.6;
+		traj[0].end.pos[1] = 0.0f;
+		traj[0].end.pos[2] = 0.6f;
+		traj[0].flight_time = duration;
+
+		traj[1].start.pos[0] = 1.6f;
+		traj[1].start.pos[1] = 0.0f;
+		traj[1].start.pos[2] = 0.6f;
+		traj[1].end.pos[0] = 0.8f;
+		traj[1].end.pos[1] = 0.0f;
+		traj[1].end.pos[2] = 0.6f;
+		traj[1].flight_time = duration;
+
+		traj[2].start.pos[0] = 0.8f;
+		traj[2].start.pos[1] = 0.0f;
+		traj[2].start.pos[2] = 0.6f;
+		traj[2].end.pos[0] = 1.6f;
+		traj[2].end.pos[1] = 0.0f;
+		traj[2].end.pos[2] = 0.6f;
+		traj[2].flight_time = duration;
+
+		traj[3].start.pos[0] = 1.6f;
+		traj[3].start.pos[1] = 0.0f;
+		traj[3].start.pos[2] = 0.6f;
+		traj[3].end.pos[0] = 0.8f;
+		traj[3].end.pos[1] = 0.0f;
+		traj[3].end.pos[2] = 0.6f;
+		traj[3].flight_time = duration;
+
+		int traj_list_size = 4; //TODO: fix hardcode
 #endif
 
 		vector<double> x_coeff_full, y_coeff_full, z_coeff_full;
