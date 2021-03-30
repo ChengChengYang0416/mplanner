@@ -15,7 +15,7 @@
 #define TRAJ_HEART       	0
 #define TRAJ_EIGHT_CURVE 	1
 #define TRAJ_LINEAR_MOTION	2
-#define TRAJ_SELECT TRAJ_LINEAR_MOTION
+#define TRAJ_SELECT TRAJ_HEART
 
 using namespace std;
 
